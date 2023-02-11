@@ -1,12 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput,SafeAreaView, TouchableOpacity } from 'react-native';
+import { useState } from 'react';
+import React from 'react';
 
 export default function App() {
+  const [text, onChangeText] = React.useState('Useless Text');
+  const [number, onChangeNumber] = React.useState('');
+  const [count, setCount] = useState(0);
+  const onPress = () => setCount(count => number * 14000);
+
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView>
+
+      <Text style={styles.container}>Program ini adalah program konversi mata uang dari dollar ke rupiah</Text>
+      
+      <Text style={styles.container2}>Masukan nilai dollar</Text>
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeNumber}
+        value={number}
+        placeholder="Masukan Angka"
+        keyboardType="numeric"
+      />
+      
+        
+      
+      <TouchableOpacity style={styles.button} onPress={onPress}>
+        <Text>Konversikan</Text>
+      </TouchableOpacity>
+
+      <Text style={styles.hasil}>Hasilnya: Rp.{count},-</Text>
+
+    </SafeAreaView>
   );
 }
 
